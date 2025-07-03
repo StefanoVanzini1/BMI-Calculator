@@ -1,47 +1,37 @@
 package com.example.bmicalculator
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.bmicalculator.ui.theme.BMICalculatorTheme
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class MainActivity : AppCompatActivity(){
+
+    override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            BMICalculatorTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        setContentView(R.layout.activity_main)
+
+        val pesoEditText = findViewById<EditText>(R.id.pesoEditText)
+        val altezzaEditText = findViewById<EditText>(R.id.altezzaEditText)
+        val calcolaButton = findViewById<Button>(R.id.calcolaButton)
+        val risultatoTextView = findViewById<TextView>(R.id.risultatoTextView)
+
+        calcolaButton.setOnClickListener{
+            val peso = pesoEditText.text.toString().toDoubleOrNull()
+            val altezzaCm = altezzaEditText.text.toString().toDoubleOrNull()
+
+            if(peso != null && altezzaCm != null && altezzaCm > 0) {
+                val altezzaM = altezzaCm / 100
+                val bmi = peso / (altezzaM * altezzaM)
+                val categoria = when {
+                    bmi < 18.5 -> "Sottopeso"
+                    bmi < 25 -> "Normopeso"
+                    bmi < 30 -> "Sovrappeso"
+                    else -> "Obesità"
                 }
+                risultatoTextView.text = "IMC: %.2f - %s".format(bmi, categoria)
+            }else{
+                risultatoTextView.text = "Inserisci valori validi."
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Ciao $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BMICalculatorTheme {
-        Greeting("Android")
     }
 }
