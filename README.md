@@ -1,8 +1,8 @@
 # BMI Calculator
 
-**Autori:** Stefano Vanzini, Raffaele Iasevoli
-**Corso:** Programmazione Dispositivi Mobili - Università degli Studi di Napoli Parthenope
-**Anno Accademico:** 2024/2025
+- **Autori:** Stefano Vanzini, Raffaele Iasevoli
+- **Corso:** Programmazione Dispositivi Mobili - Università degli Studi di Napoli Parthenope
+- **Anno Accademico:** 2024/2025
 
 ---
 
