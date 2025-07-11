@@ -45,7 +45,7 @@ I valori vengono poi interpretati secondo la seguente classificazione OMS:
 - < 18.5 -> **Sottopeso**
 - 18.5 - 24.9 -> **Normopeso**
 - 25 - 29.9 -> **Sovrappeso**
-- >= 30 -> **Obesità**
+- ≥ 30 -> **Obesità**
 
 ---
 
